@@ -22,11 +22,8 @@ This project implements a fully functional grocery store database with:
 - **Order_Details** - Line items with quantities and pricing
 
 ### Entity-Relationship Diagram
-Customers ← Orders → Employees
-↓ ↓
-Order_Details → Products → Categories
-↓
-Suppliers
+
+![Grocery Store DB ER Diagram](https://github.com/VenkataSateesh8/Grocery-Store-Database-Management-System/blob/main/Grocery_Store_ER_Diagram.png)
 
 
 ## 🚀 Features
