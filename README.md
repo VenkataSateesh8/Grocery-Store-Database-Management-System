@@ -43,13 +43,19 @@ This project implements a fully functional grocery store database with:
 - Customer engagement tracking
 
 ## 📁 File Structure
-grocery-store-db/
-├── database_schema.sql # Table creation and structure
-├── sample_data.sql # Sample data insertion
-├── analysis_queries.sql # Business intelligence queries
-├── README.md # Project documentation
-└── insights/ # Analysis results and findings
 
+```
+Grocery_Store_Database/
+├── README.md
+├── Grocery_Management_Project.sql  # Main file (keep this)
+├── database_schema.sql            # Only CREATE statements
+├── sample_data.sql               # Only INSERT statements  
+├── analysis_queries.sql          # Only SELECT queries
+├── images/
+│   └── er_diagram.png           # Visual diagram
+└── results/
+    └── sample_outputs.md        # Query outputs
+```
 
 ## 🛠️ Installation & Setup
 
@@ -59,23 +65,23 @@ grocery-store-db/
 
 ### Database Setup
 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/grocery-store-database.git
-cd grocery-store-database
+```
+git clone https://github.com/VenkataSateesh8/Grocery-Store-Database-Management-System.git
+cd Grocery-Store-Database-Management-System
 ```
 
 2. Execute the database creation script:
-```bash
+```
 SOURCE database_schema.sql;
 ```
 
 3. Load sample data:
-```bash
+```
 SOURCE sample_data.sql;
 ```
 
 4. Run analysis queries:
-```bash
+```
 SOURCE analysis_queries.sql;
 ```
 
@@ -100,12 +106,6 @@ SOURCE analysis_queries.sql;
 - Supplier contribution analysis
 - Inventory turnover rates
 
-## 🎯 Sample Insights
-- Top Product: Basmati Rice - Highest revenue generator
-- Busiest Month: December 2022 - Peak order volume
-- Best Customer: [Customer Name] - Highest total purchases
-- Most Active Supplier: [Supplier Name] - Maximum product contribution
-
 
 ## 📊 Sample Queries
 ### Customer Lifetime Value
@@ -126,24 +126,8 @@ FROM orders o JOIN order_details od ON o.order_id = od.order_id
 GROUP BY year, month ORDER BY year, month;
 ```
 
-## 🤝 Contributing
-1. Fork the repository
-2. Create your feature branch (git checkout -b feature/AmazingFeature)
-3. Commit your changes (git commit -m 'Add some AmazingFeature')
-4. Push to the branch (git push origin feature/AmazingFeature)
-5. Open a Pull Request
 
 
-## 📝 License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-## 👥 Authors
-- Your Name - Initial work
-
-## 🙏 Acknowledgments
-- Sample data generated for realistic business analysis
-- SQL best practices implementation
-- Comprehensive business intelligence queries
 
 
 
