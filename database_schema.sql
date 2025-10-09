@@ -1,26 +1,31 @@
 CREATE DATABASE GROCERIES_STORE;
 USE GROCERIES_STORE;
 
+
 CREATE TABLE IF NOT EXISTS Supplier(
 Supplier_ID INT PRIMARY KEY,
 Supplier_Name VARCHAR(255),
 Address TEXT
 );
+
 CREATE TABLE IF NOT EXISTS Categories(
 Category_ID INT PRIMARY KEY, 
 Category_Name VARCHAR(255)
-);
+); 
+
 CREATE TABLE IF NOT EXISTS Employees(
 Employee_ID INT ,
 Employee_Name VARCHAR(255),
-Hire_Date VARCHAR(255),
+Hire_Date DATE,
 PRIMARY KEY(Employee_ID)
 );
+
 CREATE TABLE IF NOT EXISTS Customers(
 Customer_ID INT PRIMARY KEY,
 Customer_Name VARCHAR(255),
 Address TEXT
 );
+
 CREATE TABLE IF NOT EXISTS Products(
 Product_ID INT PRIMARY KEY,
 Product_Name VARCHAR(255),
@@ -33,7 +38,8 @@ FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
 FOREIGN KEY (Category_ID) REFERENCES Categories(Category_ID)
 	ON UPDATE CASCADE
     ON DELETE CASCADE
-);
+); 
+
 CREATE TABLE IF NOT EXISTS Orders(
 Order_ID INT PRIMARY KEY, 
 Customer_ID INT,
@@ -45,7 +51,8 @@ FOREIGN KEY (Customer_ID) REFERENCES Customers(Customer_ID)
 FOREIGN KEY (Employee_ID) REFERENCES Employees(Employee_ID)
 	ON UPDATE CASCADE
     ON DELETE CASCADE
-);
+); 
+
 CREATE TABLE IF NOT EXISTS Order_Details(
 Order_Details_ID INT AUTO_INCREMENT PRIMARY KEY,
 Order_ID INT,
