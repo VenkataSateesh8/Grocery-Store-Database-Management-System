@@ -23,9 +23,9 @@ This project implements a fully functional grocery store database with:
 
 ### Entity-Relationship Diagram
 
+![Grocery Store DB ER Diagram](https://github.com/VenkataSateesh8/Grocery-Store-Database-Management-System/blob/main/Images/Grocery_Store_DB_ER_Diagram.png)
 
-![Grocery Store DB ER Diagram](https://github.com/VenkataSateesh8/Grocery-Store-Database-Management-System/blob/main/Images/Grocery_Store_ER_Diagram.png)
-                            
+
 
 ## 🚀 Features
 
