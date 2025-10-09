@@ -9,11 +9,11 @@ Address TEXT
 CREATE TABLE IF NOT EXISTS Categories(
 Category_ID INT PRIMARY KEY, 
 Category_Name VARCHAR(255)
-);
+); 
 CREATE TABLE IF NOT EXISTS Employees(
 Employee_ID INT ,
 Employee_Name VARCHAR(255),
-Hire_Date VARCHAR(255),
+Hire_Date DATE,
 PRIMARY KEY(Employee_ID)
 );
 CREATE TABLE IF NOT EXISTS Customers(
@@ -33,7 +33,7 @@ FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
 FOREIGN KEY (Category_ID) REFERENCES Categories(Category_ID)
 	ON UPDATE CASCADE
     ON DELETE CASCADE
-);
+); 
 CREATE TABLE IF NOT EXISTS Orders(
 Order_ID INT PRIMARY KEY, 
 Customer_ID INT,
@@ -45,7 +45,7 @@ FOREIGN KEY (Customer_ID) REFERENCES Customers(Customer_ID)
 FOREIGN KEY (Employee_ID) REFERENCES Employees(Employee_ID)
 	ON UPDATE CASCADE
     ON DELETE CASCADE
-);
+); 
 CREATE TABLE IF NOT EXISTS Order_Details(
 Order_Details_ID INT AUTO_INCREMENT PRIMARY KEY,
 Order_ID INT,
@@ -61,7 +61,8 @@ FOREIGN KEY(Product_ID) REFERENCES Products(Product_ID)
     ON DELETE CASCADE
 );
 
--- supplier, categories, employees, customers, products, orders, order_details
+
+-- Inserting Values into Tables: supplier, categories, employees, customers, products, orders, order_details
 INSERT INTO Supplier VALUES
 (1,	'Aarav Sharma',	'33 Main Street, Madhya Pradesh, India'),
 (2,	'Sai', '108 Main Street, Telangana, India'),
@@ -69,14 +70,15 @@ INSERT INTO Supplier VALUES
 (4,	'Suresh', '163 Main Street, Andhra Pradesh, India'),
 (5,	'Karthik', '82 Main Street, West Bengal, India');
 SELECT * FROM SUPPLIER;
-SELECT * FROM CATEGORIES;
+
 INSERT INTO Categories VALUES
 (1, 'Grains & Cereals'),
 (2, 'Dairy Products'),
 (3, 'Snacks & Confectioneries'),
 (4, 'Personal Care'),
 (5, 'Household');
-SELECT * FROM EMPLOYEES;
+SELECT * FROM CATEGORIES;
+
 INSERT INTO Employees VALUES
 (1, 'Aarav Kumar 1', '2021-02-03'),
 (2, 'Aditya Singh 1', '2021-01-08'),
@@ -88,7 +90,8 @@ INSERT INTO Employees VALUES
 (8, 'Diya Sharma 1', '2021-08-21'),
 (9, 'Arjun Kumar 1', '2021-05-29'),
 (10, 'Arjun Verma 1', '2021-04-14');
-SELECT * FROM CUSTOMERS;
+SELECT * FROM EMPLOYEES;
+
 INSERT INTO Customers VALUES
 (1, 'Aditi Shetty', '37 Main Street, Bengaluru, India'),
 (2, 'Isha Reddy', '27 Main Street, Hyderabad, India'),
@@ -290,7 +293,8 @@ INSERT INTO Customers VALUES
 (198, 'Latha Ghosh', '162 Main Street, Maharashtra, India'),
 (199, 'Prasad Rangan', '27 Main Street, Bihar, India'),
 (200, 'Shilpa Nayak', '120 Main Street, Bihar, India');
-SELECT * FROM PRODUCTS;
+SELECT * FROM CUSTOMERS;
+
 INSERT INTO Products VALUES
 (1, 'Basmati Rice', 3, 1, 358.98),
 (2, 'Wheat Flour', 2, 1, 255.50),
@@ -342,7 +346,8 @@ INSERT INTO Products VALUES
 (48, 'Biscuits', 3, 3, 388.81),
 (49, 'Instant Noodles', 4, 3, 89.52),
 (50, 'Pasta', 4, 3, 166.73);
-SELECT * FROM ORDERS;
+SELECT * FROM PRODUCTS;
+
 INSERT INTO Orders VALUES
 (1, 197, 5, '2022-01-30'),
 (2, 94, 6, '2022-07-02'),
@@ -644,7 +649,8 @@ INSERT INTO Orders VALUES
 (298, 187, 3, '2022-11-30'),
 (299, 2, 8, '2022-08-26'),
 (300, 166, 4, '2022-06-27');
-SELECT * FROM ORDER_DETAILS;
+SELECT * FROM ORDERS;
+
 INSERT INTO Order_Details VALUES
 (1, 109, 23, 3, 140.6243555888351, 421.8730667665053),
 (2, 144, 12, 1, 441.95123431386185, 441.95123431386185),
@@ -916,13 +922,14 @@ INSERT INTO Order_Details VALUES
 (268, 225, 7, 4, 484.26767905942313, 1937.0707162376925),
 (269, 271, 49, 2, 89.51848639672136, 179.03697279344271),
 (270, 22, 33, 2, 496.2095988939715, 992.419197);
-
+SELECT * FROM ORDER_DETAILS;
 
 
 -- Analysis Questions
 -- 1️. Customer Insights: Gain an understanding of customer engagement and purchasing behavior.
 -- How many unique customers have placed orders?
-select count(distinct  Customer_ID) as unique_costumers from orders;
+select count(distinct  Customer_ID) as unique_costumers 
+from orders;
 
 -- Which customers have placed the highest number of orders?
 SELECT c.customer_name, COUNT(o.order_id) AS order_count
@@ -991,7 +998,8 @@ ORDER BY total_revenue DESC;
 
 -- 3. Sales and Order Trends: Analyze business performance through orders and revenue over time.
 -- How many orders have been placed in total?
-SELECT COUNT(*) AS total_orders FROM orders;
+SELECT COUNT(*) AS total_orders 
+FROM orders;
 
 -- What is the average value per order?
 SELECT AVG(order_total) AS avg_order_value
@@ -1032,7 +1040,8 @@ GROUP BY day_type;
 
 -- 4️. Supplier Contribution: Identify the most active and profitable suppliers.
 -- How many suppliers are there in the database?
-SELECT COUNT(*) AS supplier_count FROM supplier;
+SELECT COUNT(*) AS supplier_count 
+FROM supplier;
 
 -- Which supplier provides the most products?
 SELECT s.supplier_name, COUNT(p.product_id) AS product_count
@@ -1058,7 +1067,8 @@ ORDER BY total_revenue DESC;
 
 -- 5️. Employee Performance: Assess how employees are handling and influencing sales.
 -- How many employees have processed orders?
-SELECT COUNT(DISTINCT employee_id) AS active_employees FROM orders;
+SELECT COUNT(DISTINCT employee_id) AS active_employees 
+FROM orders;
 
 -- Which employees have handled the most orders?
 SELECT e.employee_name, COUNT(o.order_id) AS orders_handled
@@ -1109,53 +1119,3 @@ SELECT p.product_name,
 FROM products p
 JOIN order_details od ON p.product_id = od.product_id
 GROUP BY p.product_id, p.product_name;
-
-
-
--- Top selling products by category
-SELECT cat.category_name, p.product_name, 
-       SUM(od.quantity) AS total_sold,
-       SUM(od.total_price) AS revenue
-FROM categories cat
-JOIN products p ON cat.category_id = p.category_id
-JOIN order_details od ON p.product_id = od.product_id
-GROUP BY cat.category_id, p.product_id
-ORDER BY cat.category_name, revenue DESC;
-
--- Customer loyalty analysis (customers with multiple orders)
-SELECT c.customer_name, 
-       COUNT(o.order_id) AS order_count,
-       SUM(od.total_price) AS total_spent,
-       AVG(od.total_price) AS avg_order_value
-FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-JOIN order_details od ON o.order_id = od.order_id
-GROUP BY c.customer_id
-HAVING order_count > 1
-ORDER BY total_spent DESC;
-
--- Monthly revenue growth: This code tracks your monthly revenue, compares it with the previous month, and calculates the growth/decline percentage.
-
--- Basic monthly revenue trend (fixed)
-WITH monthly_data AS (
-    SELECT 
-        YEAR(STR_TO_DATE(order_date, '%Y-%m-%d')) AS year,
-        MONTH(STR_TO_DATE(order_date, '%Y-%m-%d')) AS month,
-        SUM(od.total_price) AS monthly_revenue
-    FROM orders o
-    JOIN order_details od 
-        ON o.order_id = od.order_id
-    GROUP BY 
-        YEAR(STR_TO_DATE(order_date, '%Y-%m-%d')),
-        MONTH(STR_TO_DATE(order_date, '%Y-%m-%d'))
-)
-SELECT 
-    year,
-    month,
-    monthly_revenue,
-    ROUND(
-        ((monthly_revenue - LAG(monthly_revenue) OVER (ORDER BY year, month)) /
-          LAG(monthly_revenue) OVER (ORDER BY year, month)) * 100, 
-    2) AS growth_percentage
-FROM monthly_data
-ORDER BY year, month;
