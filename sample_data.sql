@@ -1,3 +1,5 @@
+
+-- Insertion of Values into Tables: Supplier, Categories, Employees, Customers, Products, Orders, Order_Details
 INSERT INTO Supplier VALUES
 (1,	'Aarav Sharma',	'33 Main Street, Madhya Pradesh, India'),
 (2,	'Sai', '108 Main Street, Telangana, India'),
